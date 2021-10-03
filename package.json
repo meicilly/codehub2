@@ -1,0 +1,23 @@
+{
+  "name": "codehub",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "koa": "^2.13.3",
+    "nodemon": "^2.0.13"
+  },
+  "dependencies": {
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^10.1.1",
+    "mysql2": "^2.3.0"
+  }
+}
