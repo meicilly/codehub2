@@ -23,6 +23,7 @@ const verifyLogin = async (ctx,next) =>{
         const error = new Error(errorTypes.PASSWORD_IS_INCORRENT)
         return ctx.app.emit('error',error,ctx)
     }
+    ctx.user = user
     await next()
 }
 module.exports = {verifyLogin}
