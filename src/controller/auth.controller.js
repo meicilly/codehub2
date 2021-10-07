@@ -13,7 +13,9 @@ class AuthController {
         //const {name} = ctx.request.body;
         //console.log(token)
         ctx.body = {id,name,token}
-        
+    }
+    async success(ctx,next){
+        ctx.body = "授权成功"
     }
 }
 

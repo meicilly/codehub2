@@ -20,6 +20,10 @@ const erroeHandle = (error,ctx)=>{
             status = 400
             message = '密码不正确错误'
             break
+        case errorTypes.UNAUTHORIZATION:
+            status = 401
+            message = '未授权token无效'
+                break
         default:
             status = 404;
             message = "NOT FOUND"
