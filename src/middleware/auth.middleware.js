@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 
 const errorTypes = require('../constants/error-types.js')
 const service = require("../service/user.service.js")
+const AuthService = require('../service/auth.service')
 const md5Password = require("../utils/password-handle")
 const {PUBLIC_KEY, PRIVATE_KEY} = require("../app/config")
 const verifyLogin = async (ctx,next) =>{
@@ -52,4 +53,17 @@ const  verifyAuth = async (ctx,next) =>{
     ctx.app.emit('error',error,ctx)
  }
 }
-module.exports = {verifyLogin,verifyAuth }
+const verifyPermission = async (ctx,next)=>{
+    console.log("验证授权的middleware")
+    //1.获取参数 momentId id
+    const {momentId} = ctx.params;
+    const {id} = ctx.user
+    //2.查询是否具备权限
+    const isPermission = await AuthService.checkMoment(momentId,id)
+    if(!isPermission){
+        const error = new Error(errorTypes.UNPERMISSION)
+        return ctx.app.emit('error',error,ctx)
+    }
+    await next()
+}
+module.exports = {verifyLogin,verifyAuth,verifyPermission }

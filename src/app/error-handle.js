@@ -24,6 +24,10 @@ const erroeHandle = (error,ctx)=>{
             status = 401
             message = '未授权token无效'
                 break
+        case errorTypes.UNPERMISSION:
+            status = 401
+             message = '你不具备操作权限'
+                break
         default:
             status = 404;
             message = "NOT FOUND"
